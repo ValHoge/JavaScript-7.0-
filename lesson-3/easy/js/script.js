@@ -14,7 +14,7 @@ start();
 let appData = {
   
   expenses: {},
-  optionalExpenses : '',
+  optionalExpenses : {},
   income : '',
   timeData: time,
   savings : true
@@ -49,7 +49,7 @@ function detectLevel() {
       console.log('Минимальный уровень достатка');
   } else if (appData.moneyPerDay > 100 && appData.moneyPerDay < 2000) {
       console.log('Средний уровень достатка');
-  } else if (console.log > 2000) {
+  } else if (appData.moneyPerDay > 2000) {
       console.log('Высокий уровень достатка');
   } else {
       console.log('Произошла ошибка');
@@ -68,52 +68,18 @@ function checkSavings() {
 }
 checkSavings();
 
+
 function chooseOptExpenses() {
   for (let i = 0; i < 3; i++) {
-      let optExp = prompt('Статья необязательных расходов ?', '');
-      optionalExpenses = optExp;
+    let a = prompt('Статья необязательных расходов ?', '');
+    
+
+    if ((typeof (a)) === 'string' && (typeof (a)) != null && a != '' && a.length < 50) {
+      appData.optionalExpenses[i + 1] = a;
       
-      if (i < 1) {
-        console.log('1:');
-      } else if (i > 0 && i < 2) {
-        console.log('2:');
-      } else if (i > 1 && i < 3) {
-        console.log('3:');
-      } else {
-        console.log('Произошла ошибка');
-      }
+    } else {
+      i--;
     }
- }
-
+  }
+}
 chooseOptExpenses();
-
-// 
-// let i = 0;
-// while (i < 2) {
-//        let a = prompt('Введите обязательную статью расходов в этом месяцу', '');
-//        let b = +prompt('Во сколько обойдется?', '');
-
-
-//        if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
-//          console.log("done");
-//          appData.expenses[a] = b;
-//        } else {
-//          i--;
-//        }
-//        i++;
-//   };
-
-// do {
-//   let a = prompt('Введите обязательную статью расходов в этом месяцу', '');
-//   let b = +prompt('Во сколько обойдется?', '');
-
-
-//   if ((typeof (a)) === 'string' && (typeof (a)) != null && (typeof (b)) != null && a != '' && b != '' && a.length < 50) {
-//     console.log("done");
-//     appData.expenses[a] = b;
-//   } else {
-//     i--;
-//   }
-//   i++;
-// }
-// while(i < 2);
